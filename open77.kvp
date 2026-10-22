@@ -1,7 +1,7 @@
 Meta.DisplayName=OPEN//77
 Meta.Description=OPEN//77 (Cyberpunk 2077 multiplayer) Dedicated Server
 Meta.OS=Windows, Linux
-Meta.AarchSupport=None
+Meta.AarchSupport=NotSupported
 Meta.Arch=x86_64
 Meta.Author=ricardogonzalez0490
 Meta.URL=https://open2077.net/
