@@ -15,6 +15,7 @@ and starts it in hosting-panel mode (`--no-setup`), so the browser setup wizard 
 | `open77ports.json` | Ports |
 | `open77updates.json` | Install/update stages (reads `https://cdn.open77.dev/server/latest.json`) |
 | `open77metaconfig.json` | Empty: every setting is passed on the command line, so no config file is edited |
+| `manifest.json` | Repository manifest. ADS needs it (`"repotype": "AppTemplates"`) to load templates from this repo |
 
 ## Adding it to AMP
 
