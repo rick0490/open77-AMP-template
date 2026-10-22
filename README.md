@@ -32,6 +32,9 @@ The repository must be public, with the template files in its root.
    - **Public IP**: your router's internet IP (forward the ports to this host), or this host's LAN IP for players on your network only. LAN addresses are never listed publicly.
    - Or, for a hostname such as dynamic DNS: leave Public IP empty and set **Public Endpoint Override** (`host:11778`) and **Public Download URL Override** (`http://host:11779/`).
 3. Run **Update**, then **Start**.
+4. In the launcher, connect to the **game port**: `<address>:11778`. The launcher finds the download
+   port itself (game port + 1). If you enter `11779`, it looks for mods on `11780` and fails with
+   *Could not read this server's required mods*.
 
 The license key and database connection string are passed as the `OP77_LICENSE_KEY` and
 `OP77_DATABASE_CONNECTION` environment variables, not as command-line arguments.
@@ -53,6 +56,11 @@ The license key and database connection string are passed as the `OP77_LICENSE_K
 - **Updates** extract the official archive over the install. The archive contains no runtime state,
   so `server.jsonc`, `acl.jsonc`, `.open77/` and resource `data/` folders are kept. Local edits to
   bundled resources are overwritten.
+- **New server releases need no template change.** **Update** always installs the version currently
+  listed in `latest.json`. It stops a running server and does not start it again, so press **Start**
+  afterwards. AMP cannot detect new OPEN//77 releases itself. To update automatically, add a daily time
+  trigger in the instance's **Schedule** tab with the tasks *Stop the application*, *Update the
+  application* and *Start the application*.
 - **Editing `open77.kvp`:** `App.CommandLineParameterDelimiter=` must end with exactly one space. If an
   editor strips it, AMP joins settings with no separator and the server exits with `Unknown option`.
 - **Settings precedence:** AMP settings are passed as startup overrides, which win over `server.jsonc`.
@@ -61,7 +69,8 @@ The license key and database connection string are passed as the `OP77_LICENSE_K
   `Connection N closed` but never a player's name at the default log level, so AMP lists players as
   `1`, `2` and so on. A failed handshake also counts as a short join and leave.
 - **Tested so far:** on Linux (AMP 2.8.0.8, Docker): install, start, reaching Ready, master
-  registration, a LAN client joining and leaving, and a clean stop. Windows is untested.
+  registration, a LAN client joining and leaving, a clean stop, and installing 2.50.0+op77.148 and
+  running Update again over it. Windows is untested.
 
 ## License
 
