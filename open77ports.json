@@ -1,0 +1,23 @@
+[
+    {
+        "Protocol": "UDP",
+        "Port": "11778",
+        "Name": "Game Port",
+        "Description": "UDP port players connect to",
+        "Ref": "GamePort"
+    },
+    {
+        "Protocol": "TCP",
+        "Port": "11779",
+        "Name": "Resource Download Port",
+        "Description": "TCP port players download server resources from. Also serves the public status query. Must be reachable from the internet",
+        "Ref": "DownloadPort"
+    },
+    {
+        "Protocol": "TCP",
+        "Port": "11780",
+        "Name": "Warden Admin Panel Port",
+        "Description": "TCP port for the Warden web admin panel (only used when Warden is enabled). Avoid exposing it publicly",
+        "Ref": "WardenPort"
+    }
+]

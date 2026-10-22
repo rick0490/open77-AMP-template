@@ -1,0 +1,73 @@
+[
+    {
+        "UpdateStageName": "Server Download",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "FetchURLFromJQ",
+        "UpdateSourceData": "https://cdn.open77.dev/server/latest.json",
+        "UpdateSourceArgs": "$['builds']['linux-x64']['url']",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "UpdateSourceConditionSetting": "ReleaseChannel",
+        "UpdateSourceConditionValue": "stable",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Server Download",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "FetchURLFromJQ",
+        "UpdateSourceData": "https://cdn.open77.dev/server/unstable/latest.json",
+        "UpdateSourceArgs": "$['builds']['linux-x64']['url']",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "UpdateSourceConditionSetting": "ReleaseChannel",
+        "UpdateSourceConditionValue": "unstable",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Server Download",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "FetchURLFromJQ",
+        "UpdateSourceData": "https://cdn.open77.dev/server/latest.json",
+        "UpdateSourceArgs": "$['builds']['windows-x64']['url']",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "UpdateSourceConditionSetting": "ReleaseChannel",
+        "UpdateSourceConditionValue": "stable",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Server Download",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "FetchURLFromJQ",
+        "UpdateSourceData": "https://cdn.open77.dev/server/unstable/latest.json",
+        "UpdateSourceArgs": "$['builds']['windows-x64']['url']",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "UpdateSourceConditionSetting": "ReleaseChannel",
+        "UpdateSourceConditionValue": "unstable",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Set Executable Flag",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "SetExecutableFlag",
+        "UpdateSourceArgs": "{{$FullBaseDir}}Open77.Server",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Create Default server.jsonc",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "CreateFile",
+        "UpdateSourceData": "{\"schemaVersion\":1,\"identity\":{\"name\":\"AMP Powered Open77 Server\",\"visibility\":\"public\"},\"network\":{\"port\":11778,\"maximumPlayers\":32},\"simulation\":{},\"masterServer\":{\"enabled\":true,\"licenseKey\":null}}",
+        "UpdateSourceArgs": "{{$FullBaseDir}}server.jsonc",
+        "OverwriteExistingFiles": false
+    }
+]
