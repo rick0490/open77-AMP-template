@@ -57,11 +57,11 @@ The license key and database connection string are passed as the `OP77_LICENSE_K
   editor strips it, AMP joins settings with no separator and the server exits with `Unknown option`.
 - **Settings precedence:** AMP settings are passed as startup overrides, which win over `server.jsonc`.
   Changes made in Warden to the same fields are overridden at the next start.
-- **Not yet done:** `Console.UserJoinRegex` / `Console.UserLeaveRegex` are empty because the join and
-  leave log lines have not been captured from a real client yet, so AMP does not track online players.
-- **Tested so far:** on Linux, the server binary validates the command line AMP builds
-  (`--check-config`), and the ready regex matches the server's real log output. The template has not
-  yet been run end to end inside AMP, and Windows is untested.
+- **Player tracking shows connection numbers, not names.** The server logs `Connection N opened` and
+  `Connection N closed` but never a player's name at the default log level, so AMP lists players as
+  `1`, `2` and so on. A failed handshake also counts as a short join and leave.
+- **Tested so far:** on Linux (AMP 2.8.0.8, Docker): install, start, reaching Ready, master
+  registration, a LAN client joining and leaving, and a clean stop. Windows is untested.
 
 ## License
 
