@@ -1,0 +1,5 @@
+root = true
+
+# App.CommandLineParameterDelimiter must stay a single trailing space.
+[*.kvp]
+trim_trailing_whitespace = false

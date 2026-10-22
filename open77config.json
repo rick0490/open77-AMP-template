@@ -46,8 +46,8 @@
         "DisplayName": "Visibility",
         "Category": "Open77:sports_esports",
         "Subcategory": "Server:dns:1",
-        "Description": "Public servers appear in the launcher and on open2077.net. Unlisted and private servers stay licensed but are not listed",
-        "Keywords": "visibility,public,private,unlisted",
+        "Description": "Public servers appear in the launcher and on open2077.net. Unlisted servers stay licensed but are not listed. LAN addresses are never listed, whatever this is set to",
+        "Keywords": "visibility,public,unlisted",
         "FieldName": "Visibility",
         "InputType": "enum",
         "ParamFieldName": "identity.visibility",
@@ -55,8 +55,7 @@
         "DefaultValue": "public",
         "EnumValues": {
             "public": "Public (default)",
-            "unlisted": "Unlisted",
-            "private": "Private"
+            "unlisted": "Unlisted"
         }
     },
     {
@@ -124,22 +123,22 @@
         "DisplayName": "Public IP",
         "Category": "Open77:sports_esports",
         "Subcategory": "Network:lan:2",
-        "Description": "The public IPv4 or IPv6 address of this host (no port). The server uses it to advertise the game and resource download addresses to players. It does not detect this itself. Loopback and 0.0.0.0 are rejected",
-        "Keywords": "public,ip,address",
+        "Description": "The IPv4 or IPv6 address players use to reach this host (no port). It fills in the game and resource download addresses advertised to players. Use your router's internet IP (and forward the ports) for internet players, or this machine's LAN IP for players on your network only. The server does not detect it itself. Either this or Public Endpoint Override must be set",
+        "Keywords": "public,ip,address,lan",
         "FieldName": "PublicIP",
         "InputType": "text",
-        "ParamFieldName": "PublicIP",
-        "IncludeInCommandLine": false,
+        "ParamFieldName": "public-ip",
+        "IncludeInCommandLine": true,
+        "SkipIfEmpty": true,
         "DefaultValue": "",
         "Placeholder": "203.0.113.10",
-        "Required": true,
         "EnumValues": {}
     },
     {
         "DisplayName": "Public Endpoint Override",
         "Category": "Open77:sports_esports",
         "Subcategory": "Network:lan:2",
-        "Description": "Optional HOST:PORT advertised to players instead of Public IP plus the game port. Use it for a hostname, or when NAT maps a different external port",
+        "Description": "HOST:PORT advertised to players instead of Public IP plus the game port. Use it for a hostname (for example dynamic DNS), or when NAT maps a different external port. If you use a hostname without Public IP, also set Public Download URL Override",
         "Keywords": "public,endpoint,hostname,nat",
         "FieldName": "PublicEndpoint",
         "InputType": "text",
@@ -154,7 +153,7 @@
         "DisplayName": "Public Download URL Override",
         "Category": "Open77:sports_esports",
         "Subcategory": "Network:lan:2",
-        "Description": "Optional public base URL for resource downloads, for example an HTTPS reverse proxy in front of the download port. Leave empty to use http://PublicIP:DownloadPort/",
+        "Description": "Public base URL for resource downloads, for example http://play.example.com:11779/ or an HTTPS reverse proxy in front of the download port. Required when Public IP is empty, otherwise players are told to download from 127.0.0.1. Leave empty to use http://PublicIP:DownloadPort/",
         "Keywords": "download,url,https,proxy,resources",
         "FieldName": "PublicDownloadUrl",
         "InputType": "text",

@@ -28,7 +28,9 @@ The repository must be public, with the template files in its root.
 ## Setting up an instance
 
 1. Create a license key at <https://open2077.net/account/keys>. It is only shown once.
-2. In the instance settings, fill in **License Key** and **Public IP**. The server does not detect its own public IP.
+2. In the instance settings, fill in **License Key** and the address players connect to. The server does not detect it itself:
+   - **Public IP**: your router's internet IP (forward the ports to this host), or this host's LAN IP for players on your network only. LAN addresses are never listed publicly.
+   - Or, for a hostname such as dynamic DNS: leave Public IP empty and set **Public Endpoint Override** (`host:11778`) and **Public Download URL Override** (`http://host:11779/`).
 3. Run **Update**, then **Start**.
 
 The license key and database connection string are passed as the `OP77_LICENSE_KEY` and
@@ -51,6 +53,8 @@ The license key and database connection string are passed as the `OP77_LICENSE_K
 - **Updates** extract the official archive over the install. The archive contains no runtime state,
   so `server.jsonc`, `acl.jsonc`, `.open77/` and resource `data/` folders are kept. Local edits to
   bundled resources are overwritten.
+- **Editing `open77.kvp`:** `App.CommandLineParameterDelimiter=` must end with exactly one space. If an
+  editor strips it, AMP joins settings with no separator and the server exits with `Unknown option`.
 - **Settings precedence:** AMP settings are passed as startup overrides, which win over `server.jsonc`.
   Changes made in Warden to the same fields are overridden at the next start.
 - **Not yet done:** `Console.UserJoinRegex` / `Console.UserLeaveRegex` are empty because the join and
